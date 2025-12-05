@@ -78,11 +78,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  # Enable web renderer selection
-  web:
-    # Use CanvasKit for better performance
-    renderer: canvaskit
-
   assets:
     - assets/images/
     - assets/icons/
