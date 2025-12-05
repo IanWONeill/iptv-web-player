@@ -1,0 +1,6 @@
+<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="64" fill="#1a1a2e" rx="8"/>
+  <circle cx="32" cy="28" r="16" fill="#0f3460"/>
+  <polygon points="26,22 26,34 38,28" fill="#e94560"/>
+  <text x="32" y="54" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#eee" text-anchor="middle">IPTV</text>
+</svg>

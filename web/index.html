@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <!--
+    <!--
     If you are serving your web app in a path other than the root, change the
     href value below to reflect the base path you are serving from.
 
@@ -14,119 +15,120 @@
     This is a placeholder for base href that will be replaced by the value of
     FLUTTER_BASE_HREF during build time. DO NOT change this.
   -->
-  <base href="$FLUTTER_BASE_HREF">
+    <base href="$FLUTTER_BASE_HREF">
 
-  <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="Ultra-high-performance IPTV web player with TiviMate UI/UX">
+    <meta charset="UTF-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta name="description" content="Ultra-high-performance IPTV web player with TiviMate UI/UX">
 
-  <!-- iOS meta tags & icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="IPTV Player">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+    <!-- iOS meta tags & icons -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="IPTV Player">
+    <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png" />
 
-  <title>IPTV Web Player</title>
-  <link rel="manifest" href="manifest.json">
+    <title>IPTV Web Player</title>
+    <link rel="manifest" href="manifest.json">
 
-  <!-- Viewport configuration for optimal display -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Viewport configuration for optimal display -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-  <!-- Theme color for browser chrome -->
-  <meta name="theme-color" content="#0a0a0a">
+    <!-- Theme color for browser chrome -->
+    <meta name="theme-color" content="#0a0a0a">
 
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #0a0a0a;
-      overflow: hidden;
-    }
-    
-    #loading {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background-color: #0a0a0a;
-      color: #ffffff;
-      font-family: 'Roboto', sans-serif;
-      z-index: 9999;
-    }
-    
-    .spinner {
-      width: 50px;
-      height: 50px;
-      border: 3px solid #1a1a1a;
-      border-top-color: #1a73e8;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-    
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-    
-    #loading-text {
-      margin-top: 20px;
-      font-size: 18px;
-      font-weight: 500;
-    }
-  </style>
-</head>
-<body>
-  <!-- Loading indicator -->
-  <div id="loading">
-    <div class="spinner"></div>
-    <div id="loading-text">Loading IPTV Player...</div>
-  </div>
-
-  <!-- HLS.js library for HLS streaming support -->
-  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-
-  <!-- Service Worker registration for CORS handling -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('service-worker.js').then(
-          function(registration) {
-            console.log('Service Worker registered successfully:', registration.scope);
-          },
-          function(err) {
-            console.log('Service Worker registration failed:', err);
-          }
-        );
-      });
-    }
-  </script>
-
-  <!-- Flutter bootstrap script -->
-  <script>
-    window.addEventListener('load', function(ev) {
-      // Download main.dart.js
-      _flutter.loader.loadEntrypoint({
-        serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
-        },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine({
-            renderer: "canvaskit",
-          }).then(function(appRunner) {
-            // Hide loading indicator
-            document.getElementById('loading').style.display = 'none';
-            appRunner.runApp();
-          });
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a;
+            overflow: hidden;
         }
-      });
-    });
-  </script>
+
+        #loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            z-index: 9999;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #1a1a1a;
+            border-top-color: #1a73e8;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        #loading-text {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading indicator -->
+    <div id="loading">
+        <div class="spinner"></div>
+        <div id="loading-text">Loading IPTV Player...</div>
+    </div>
+
+    <!-- HLS.js library for HLS streaming support -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+    <!-- Service Worker registration for CORS handling -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('service-worker.js').then(
+                    function (registration) {
+                        console.log('Service Worker registered successfully:', registration.scope);
+                    },
+                    function (err) {
+                        console.log('Service Worker registration failed:', err);
+                    }
+                );
+            });
+        }
+    </script>
+
+    <!-- Flutter bootstrap script -->
+    <script src="flutter.js" defer></script>
+    <script>
+        window.addEventListener('load', function(ev) {
+            // Wait for flutter.js to load
+            _flutter.loader.load({
+                onEntrypointLoaded: async function(engineInitializer) {
+                    let appRunner = await engineInitializer.initializeEngine({
+                        renderer: "canvaskit",
+                    });
+                    // Hide loading indicator
+                    document.getElementById('loading').style.display = 'none';
+                    await appRunner.runApp();
+                }
+            });
+        });
+    </script>
 </body>
+
 </html>
