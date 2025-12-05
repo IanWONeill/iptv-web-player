@@ -184,9 +184,9 @@ class _VodCardState extends State<_VodCard> {
                             width: double.infinity,
                             errorBuilder: (context, error, stack) => _fallbackPoster(),
                           )
-                        : widget.stream.streamIcon.isNotEmpty
+                        : (widget.stream.streamIcon != null && widget.stream.streamIcon!.isNotEmpty)
                             ? Image.network(
-                                widget.stream.streamIcon,
+                                widget.stream.streamIcon!,
                                 fit: BoxFit.cover,
                                 width: double.infinity,
                                 errorBuilder: (context, error, stack) => _fallbackPoster(),
@@ -207,14 +207,14 @@ class _VodCardState extends State<_VodCard> {
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
-          if (widget.stream.rating != null && widget.stream.rating! > 0) ...[
+          if (widget.stream.rating != null && widget.stream.rating!.isNotEmpty) ...[
             const SizedBox(height: 4),
             Row(
               children: [
                 const Icon(Icons.star, color: Color(0xFFffd700), size: 14),
                 const SizedBox(width: 4),
                 Text(
-                  widget.stream.rating!.toStringAsFixed(1),
+                  widget.stream.rating!,
                   style: const TextStyle(color: Colors.white70, fontSize: 12),
                 ),
               ],

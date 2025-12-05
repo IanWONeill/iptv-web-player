@@ -126,13 +126,15 @@ class _SeriesCardState extends State<_SeriesCard> {
   Future<void> _loadTmdbData() async {
     try {
       final results = await widget.tmdbService.searchTvShow(widget.series.name);
-      if (results.isNotEmpty && mounted) {
+      if (results != null && results.isNotEmpty && mounted) {
         setState(() {
           _tmdbPoster = results[0]['poster_path'] != null
               ? 'https://image.tmdb.org/t/p/w342${results[0]['poster_path']}'
               : null;
           _isLoading = false;
         });
+      } else if (mounted) {
+        setState(() => _isLoading = false);
       }
     } catch (e) {
       if (mounted) {
@@ -168,9 +170,9 @@ class _SeriesCardState extends State<_SeriesCard> {
                             width: double.infinity,
                             errorBuilder: (context, error, stack) => _fallbackPoster(),
                           )
-                        : widget.series.cover.isNotEmpty
+                        : (widget.series.cover != null && widget.series.cover!.isNotEmpty)
                             ? Image.network(
-                                widget.series.cover,
+                                widget.series.cover!,
                                 fit: BoxFit.cover,
                                 width: double.infinity,
                                 errorBuilder: (context, error, stack) => _fallbackPoster(),
@@ -191,14 +193,14 @@ class _SeriesCardState extends State<_SeriesCard> {
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
-          if (widget.series.rating != null && widget.series.rating! > 0) ...[
+          if (widget.series.rating != null && widget.series.rating!.isNotEmpty) ...[
             const SizedBox(height: 4),
             Row(
               children: [
                 const Icon(Icons.star, color: Color(0xFFffd700), size: 14),
                 const SizedBox(width: 4),
                 Text(
-                  widget.series.rating!.toStringAsFixed(1),
+                  widget.series.rating!,
                   style: const TextStyle(color: Colors.white70, fontSize: 12),
                 ),
               ],
