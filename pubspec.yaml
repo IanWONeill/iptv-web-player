@@ -78,6 +78,11 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
+  # Enable web renderer selection
+  web:
+    # Use CanvasKit for better performance
+    renderer: canvaskit
+
   assets:
     - assets/images/
     - assets/icons/
@@ -97,10 +102,3 @@ flutter:
         - asset: assets/fonts/RobotoCondensed-Regular.ttf
         - asset: assets/fonts/RobotoCondensed-Bold.ttf
           weight: 700
-
-# Flutter web configuration
-flutter:
-  # Enable web renderer selection
-  web:
-    # Use CanvasKit for better performance
-    renderer: canvaskit
