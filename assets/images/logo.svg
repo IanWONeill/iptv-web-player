@@ -1,0 +1,7 @@
+<svg width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" fill="#1a1a2e"/>
+  <circle cx="256" cy="200" r="80" fill="#0f3460" stroke="#16213e" stroke-width="4"/>
+  <polygon points="226,170 226,230 286,200" fill="#e94560"/>
+  <text x="256" y="340" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#eee" text-anchor="middle">IPTV</text>
+  <text x="256" y="380" font-family="Arial, sans-serif" font-size="24" fill="#aaa" text-anchor="middle">Web Player</text>
+</svg>

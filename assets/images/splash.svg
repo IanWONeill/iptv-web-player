@@ -1,0 +1,7 @@
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1920" height="1080" fill="#1a1a2e"/>
+  <circle cx="960" cy="440" r="120" fill="#0f3460" stroke="#16213e" stroke-width="6"/>
+  <polygon points="920,390 920,490 1020,440" fill="#e94560"/>
+  <text x="960" y="640" font-family="Arial, sans-serif" font-size="72" font-weight="bold" fill="#eee" text-anchor="middle">IPTV Web Player</text>
+  <text x="960" y="700" font-family="Arial, sans-serif" font-size="32" fill="#aaa" text-anchor="middle">Loading your entertainment...</text>
+</svg>
