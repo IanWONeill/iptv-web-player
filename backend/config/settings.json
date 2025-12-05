@@ -1,0 +1,24 @@
+{
+  "app_name": "IPTV Web Player",
+  "version": "1.0.0",
+  "logo_url": "https://example.com/logo.png",
+  "primary_color": "#1a73e8",
+  "accent_color": "#00bcd4",
+  "features": {
+    "enable_vod": true,
+    "enable_series": true,
+    "enable_epg": true,
+    "enable_favorites": true,
+    "enable_catchup": true,
+    "enable_multi_service": true
+  },
+  "allow_custom_service": true,
+  "services": [
+    {
+      "id": "demo",
+      "name": "Demo Service",
+      "url": "http://demo.provider.com:8080",
+      "description": "Demo IPTV service for testing"
+    }
+  ]
+}
