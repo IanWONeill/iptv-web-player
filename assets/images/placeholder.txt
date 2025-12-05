@@ -1,0 +1,2 @@
+# Placeholder for images directory
+# Add your logo, splash screen, and other images here
