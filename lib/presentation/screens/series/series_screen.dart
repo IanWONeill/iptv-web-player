@@ -104,7 +104,7 @@ class _SeriesScreenState extends ConsumerState<SeriesScreen> {
 }
 
 class _SeriesCard extends StatefulWidget {
-  final XtreamSeries series;
+  final Series series;
   final TmdbService tmdbService;
 
   const _SeriesCard({required this.series, required this.tmdbService});

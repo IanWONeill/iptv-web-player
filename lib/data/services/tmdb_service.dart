@@ -84,6 +84,22 @@ class TmdbService {
     }
   }
   
+  /// Alias for searchTv for compatibility
+  Future<List<Map<String, dynamic>>?> searchTvShow(String title, {int? year}) async {
+    try {
+      final params = <String, dynamic>{'query': title};
+      if (year != null) params['first_air_date_year'] = year;
+      
+      final response = await _dio.get('/search/tv', queryParameters: params);
+      final results = response.data['results'] as List?;
+      
+      return results?.cast<Map<String, dynamic>>() ?? [];
+    } catch (e) {
+      print('TMDB search error: $e');
+      return [];
+    }
+  }
+  
   /// Build poster URL
   String getPosterUrl(String? path, {String size = 'w500'}) {
     if (path == null || path.isEmpty) return '';

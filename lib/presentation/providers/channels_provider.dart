@@ -48,3 +48,67 @@ final channelEpgProvider = FutureProvider.family<List<EpgProgram>, String>((ref,
     return [];
   }
 });
+
+/// VOD Categories provider
+final vodCategoriesProvider = FutureProvider<List<Category>>((ref) async {
+  final xtreamService = ref.watch(xtreamServiceProvider);
+  final authState = ref.watch(authProvider);
+
+  if (!authState.isAuthenticated) {
+    return [];
+  }
+
+  try {
+    return await xtreamService.getVodCategories();
+  } catch (e) {
+    return [];
+  }
+});
+
+/// VOD Streams provider
+final vodStreamsProvider = FutureProvider<List<VodStream>>((ref) async {
+  final xtreamService = ref.watch(xtreamServiceProvider);
+  final authState = ref.watch(authProvider);
+
+  if (!authState.isAuthenticated) {
+    return [];
+  }
+
+  try {
+    return await xtreamService.getVodStreams();
+  } catch (e) {
+    return [];
+  }
+});
+
+/// Series Categories provider
+final seriesCategoriesProvider = FutureProvider<List<Category>>((ref) async {
+  final xtreamService = ref.watch(xtreamServiceProvider);
+  final authState = ref.watch(authProvider);
+
+  if (!authState.isAuthenticated) {
+    return [];
+  }
+
+  try {
+    return await xtreamService.getSeriesCategories();
+  } catch (e) {
+    return [];
+  }
+});
+
+/// Series provider
+final seriesProvider = FutureProvider<List<Series>>((ref) async {
+  final xtreamService = ref.watch(xtreamServiceProvider);
+  final authState = ref.watch(authProvider);
+
+  if (!authState.isAuthenticated) {
+    return [];
+  }
+
+  try {
+    return await xtreamService.getSeries();
+  } catch (e) {
+    return [];
+  }
+});

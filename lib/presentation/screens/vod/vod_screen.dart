@@ -105,7 +105,7 @@ class _VodScreenState extends ConsumerState<VodScreen> {
 }
 
 class _VodCard extends StatefulWidget {
-  final XtreamVodStream stream;
+  final VodStream stream;
   final TmdbService tmdbService;
 
   const _VodCard({required this.stream, required this.tmdbService});
@@ -127,13 +127,15 @@ class _VodCardState extends State<_VodCard> {
   Future<void> _loadTmdbData() async {
     try {
       final results = await widget.tmdbService.searchMovie(widget.stream.name);
-      if (results.isNotEmpty && mounted) {
+      if (results != null && results.isNotEmpty && mounted) {
         setState(() {
           _tmdbPoster = results[0]['poster_path'] != null
               ? 'https://image.tmdb.org/t/p/w342${results[0]['poster_path']}'
               : null;
           _isLoading = false;
         });
+      } else if (mounted) {
+        setState(() => _isLoading = false);
       }
     } catch (e) {
       if (mounted) {
@@ -150,10 +152,13 @@ class _VodCardState extends State<_VodCard> {
           context,
           MaterialPageRoute(
             builder: (context) => PlayerScreen(
-              streamUrl: widget.stream.containerExtension == 'm3u8'
-                  ? widget.stream.streamUrl
-                  : '${widget.stream.streamUrl}.${widget.stream.containerExtension}',
-              title: widget.stream.name,
+              contentType: 'vod',
+              contentId: widget.stream.streamId.toString(),
+              contentData: {
+                'name': widget.stream.name,
+                'stream_icon': widget.stream.streamIcon,
+                'container_extension': widget.stream.containerExtension,
+              },
             ),
           ),
         );
