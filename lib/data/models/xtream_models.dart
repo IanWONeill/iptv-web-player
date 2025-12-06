@@ -2,6 +2,20 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'xtream_models.g.dart';
 
+/// Custom converter to handle int/String fields from XtreamCodes API
+class StringOrIntConverter implements JsonConverter<String, dynamic> {
+  const StringOrIntConverter();
+
+  @override
+  String fromJson(dynamic value) {
+    if (value == null) return '';
+    return value.toString();
+  }
+
+  @override
+  dynamic toJson(String value) => value;
+}
+
 /// User authentication info
 @JsonSerializable()
 class UserInfo {
@@ -26,22 +40,31 @@ class UserInfoData {
   final String username;
   final String password;
   final String message;
+  
+  @StringOrIntConverter()
   final String auth;
+  
+  @StringOrIntConverter()
   final String status;
   
   @JsonKey(name: 'exp_date')
+  @StringOrIntConverter()
   final String? expDate;
   
   @JsonKey(name: 'is_trial')
+  @StringOrIntConverter()
   final String? isTrial;
   
   @JsonKey(name: 'active_cons')
+  @StringOrIntConverter()
   final String? activeCons;
   
   @JsonKey(name: 'created_at')
+  @StringOrIntConverter()
   final String? createdAt;
   
   @JsonKey(name: 'max_connections')
+  @StringOrIntConverter()
   final String? maxConnections;
   
   @JsonKey(name: 'allowed_output_formats')
@@ -68,17 +91,24 @@ class UserInfoData {
 
 @JsonSerializable()
 class ServerInfo {
+  @StringOrIntConverter()
   final String url;
+  
+  @StringOrIntConverter()
   final String port;
   
   @JsonKey(name: 'https_port')
+  @StringOrIntConverter()
   final String? httpsPort;
   
   @JsonKey(name: 'server_protocol')
   final String? serverProtocol;
   
   @JsonKey(name: 'rtmp_port')
+  @StringOrIntConverter()
   final String? rtmpPort;
+  
+  final String? timezone;
   
   @JsonKey(name: 'timestamp_now')
   final int? timestampNow;
@@ -92,6 +122,7 @@ class ServerInfo {
     this.httpsPort,
     this.serverProtocol,
     this.rtmpPort,
+    this.timezone,
     this.timestampNow,
     this.timeNow,
   });
