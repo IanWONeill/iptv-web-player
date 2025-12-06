@@ -115,18 +115,23 @@
     <!-- Flutter bootstrap script -->
     <script src="flutter.js" defer></script>
     <script>
+        // Wait for flutter.js to load the _flutter object
         window.addEventListener('load', function(ev) {
-            // Wait for flutter.js to load
-            _flutter.loader.load({
-                onEntrypointLoaded: async function(engineInitializer) {
-                    let appRunner = await engineInitializer.initializeEngine({
-                        renderer: "canvaskit",
-                    });
-                    // Hide loading indicator
-                    document.getElementById('loading').style.display = 'none';
-                    await appRunner.runApp();
-                }
-            });
+            // Use _flutter.loader.loadEntrypoint for Flutter 3.x
+            if (typeof _flutter !== 'undefined' && _flutter.loader) {
+                _flutter.loader.loadEntrypoint({
+                    onEntrypointLoaded: async function(engineInitializer) {
+                        let appRunner = await engineInitializer.initializeEngine({
+                            renderer: "canvaskit",
+                        });
+                        // Hide loading indicator
+                        document.getElementById('loading').style.display = 'none';
+                        await appRunner.runApp();
+                    }
+                });
+            } else {
+                console.error('Flutter loader not available');
+            }
         });
     </script>
 </body>
